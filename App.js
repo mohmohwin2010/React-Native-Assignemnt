@@ -13,6 +13,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { render } from "react-dom";
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import {SocialIcon} from 'react-native-elements';
 
 const styles = StyleSheet.create({
     title: {
@@ -93,7 +94,7 @@ const NewsViewScreen = ({navigation}) => {
     const [news, setNews] = useState([]);
     useEffect(() => {
         fetch(
-            "http://newsapi.org/v2/everything?q=bitcoin&from=2020-06-10&sortBy=publishedAt&apiKey=41fcfed73667443f8da04bdbc76bbd9b"
+            "http://newsapi.org/v2/everything?q=bitcoin&from=2020-06-15&sortBy=publishedAt&apiKey=41fcfed73667443f8da04bdbc76bbd9b"
         )
             .then((res) => res.json())
             .then((json) => {
@@ -139,6 +140,13 @@ const NewsDetailViewScreen = ({navigation}) => {
             <Text style={styles.ContentStyle}>{navigation.getParam('content')}</Text>
             <Text style={styles.publisheddate}>Published At : {navigation.getParam('publishedAt')}</Text>
             <Text style={styles.website} onPress={() => Linking.openURL(navigation.getParam('url'))}>Website Link</Text>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+                <View style={{flexDirection: 'column'}}>
+                    <SocialIcon
+                        type="twitter"
+                    />
+                </View>
+            </View>
         </ScrollView>
 
     );
